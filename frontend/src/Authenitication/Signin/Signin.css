@@ -1,0 +1,191 @@
+@media only screen and (min-width: 1140px) {
+  .signin {
+    display: flex;
+    justify-content: space-between;
+    gap: 2em;
+  }
+  .picture {
+    width: 50%;
+    padding-right: 20px;
+  }
+  .signin-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+  }
+}
+@media only screen and (max-width: 1140px) {
+  .signin-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+}
+
+.signin-form {
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255,255,255, 0.7);
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  padding: 20px;
+  transition: transform 0.5s ease-in-out;
+}
+
+.checkbox {
+  display: flex;
+  gap: 1em;
+}
+
+.checked {
+  transform: scale(1.5);
+  input[type=checkbox] {
+    accent-color: green;
+    border-width: 0;
+  }
+}
+
+.signin-register {
+  text-decoration: none;
+  color: green;
+  font-weight: bold;
+  font-size: 17px;
+}
+.click-effect {
+  animation-name: button-click;
+  animation-duration: 0.3s;
+  transition: transform 0.3s ease-in-out;
+}
+
+@keyframes button-click {
+  from {
+    transform: scale(0.7);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+.input-group input {
+  height: 38px;
+  /*border: 1px solid #ced4da;*/
+  border-radius: 5px;
+  transition: border-color 0.3s ease-in-out;
+}
+input:focus {
+  /*border: 4px solid #ced4da;*/
+  outline: 0;
+}
+.bi-check-circle-fill {
+  color: #28a745;
+  font-size: 1.2em;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translate(109%,-50%);
+  transition: opacity 0.3s ease-in-out;
+  border: 0;
+  font-weight: bold;
+}
+.bi-x-circle-fill {
+  color: #dc3545;
+  font-size: 1.2em;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translate(109%,-50%);
+  transition: opacity 0.3s ease-in-out;
+  border: 0;
+  font-weight: bold;
+}
+
+.changeGreen {
+  border: 3px solid green;
+}
+.changeRed {
+  border: 3px solid red;
+}
+.changeRed:focus {
+  border: 3px solid red;
+  outline: 0;
+}
+.changeGreen:focus {
+  border: 3px solid green;
+  outline: 0;
+}
+.input-group-text i {
+  background: none;
+}
+
+.signin-form .card {
+  background-color: #ffffff;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+body {
+  /*background-color: rgb(227,245,249);*/
+  margin: 0; /* Remove default margin for a cleaner look */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  /*background: url('../../images/green.webp') no-repeat fixed;
+  background-size: cover; */
+
+}
+.picture img {
+  min-height: 450px;
+  max-width: 450px;
+}
+.or-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.or-line {
+  flex-grow: 1;
+  height: 1px;
+  background-color: #ccc;
+  margin: 0 5px;
+}
+
+.or-text {
+  margin: 0 10px;
+  color: #555;
+  font-weight: bold;
+}
+.custom-shape-divider-top-1703584043 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-top-1703584043 svg {
+    position: relative;
+    display: block;
+    width: calc(157% + 1.3px);
+    height: 500px;
+    transform: rotateY(180deg);
+}
+
+.custom-shape-divider-top-1703584043 .shape-fill {
+    fill: rgb(227, 245, 249);
+}
+.custom-shape-divider-top-1703584043 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100vh;
+  z-index: -1;
+  /*background-color: rgb(227, 245, 249);*/  /*the background color for the bottom*/
+}
