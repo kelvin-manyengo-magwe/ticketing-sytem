@@ -1,0 +1,38 @@
+@media only screen and (min-width: 1383px) {
+  .group {
+    display: flex;
+    align-content: center;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 4em;
+  }
+  .alternative-login {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2em;
+  }
+  .signin-form {
+    transform: translateX(10%);
+  }
+}
+@media screen and (min-width:  992px) and (max-width: 1140px) {
+  .group {
+    display: flex;
+    align-content: center;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 4em;
+  }
+  .alternative-login {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2em;
+  }
+}
+.head {
+  
+}

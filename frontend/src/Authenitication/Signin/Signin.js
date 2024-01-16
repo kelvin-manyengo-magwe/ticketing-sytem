@@ -63,20 +63,56 @@ function Signin() {
 
     const handleCheckboxClick= () => setIsChecked(!isChecked);
 
-    const handleSigninButton= () => setIsClicked(!isClicked);
 
-    const submit = (event) => {
-      event.preventDefault();
-      /*handleSignin(emailValue, passwordValue);*/
 
-      /*set the email value to null after refresh(submit)*/
-      setEmailError(null);
-      setPasswordError(null);
+      const submitMethod = async (event) => {
+        event.preventDefault();
 
-      /*setEmailValue(null);
-      setPasswordValue(null);*/
-    }
+        /*create the instance of the FormData for the form values*/
+        const formData = new FormData(event.target);
 
+        /*create the empty object to store the form values*/
+        const jsonData= {};
+
+        /*iterate through the form fields for form data*/
+        formData.forEach((value, key) => {
+          jsonData[key] = value;
+        });
+
+            try {
+                const response = await fetch(`http://127.0.0.1:8000/api/login`, {
+                  method: 'POST',
+                  body: JSON.stringify(jsonData),
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                });
+
+                if(!response.ok) {
+                  throw Error(`Error: ${response.status} - ${response.statusText}`);
+                }
+
+                const signinData = await response.json();
+                  console.log(signinData);
+
+            } catch(error) {
+
+              if(error.response) { /*response was from the server*/
+                  console.log(`Error from the server:
+                    Data: ${JSON.stringify(error.response.data)},
+                    Status: ${error.response.status},
+                    Headers: ${JSON.stringify(error.response.headers)}`);
+              }
+                else if(error.request) { /*request was made but not received*/
+                    console.log(`Error request was made but not received: ${error.request}`);
+                }
+                else {
+                  console.log(`Error due setting up request ${error.message}`);
+                }
+            }
+
+
+      }
 
 
 
@@ -90,9 +126,9 @@ function Signin() {
               <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill" fill="rgb(227,245,249)"></path>
             </svg>
           </div>*/}
-        <div class="custom-shape-divider-top-1703584043">
+        <div className="custom-shape-divider-top-1703584043">
             <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" className="shape-fill"></path>
             </svg>
         </div>
 
@@ -110,17 +146,17 @@ function Signin() {
           </div>
 
 
-          <form onSubmit={submit} className="mt-4">
+          <form onSubmit={submitMethod} encType="multipart/form-data" method="post" className="mt-4">
               <div className="form-group mb-4">
                   <label className="font-weight-bold"><b>Email</b></label>
 
                     <div className="input-email input-group">
-                        <input type="email" value={emailValue} onChange={handleEmailValue} className={`text-center p-1 ${validateEmail(emailValue) ? "changeGreen" : "changeRed"}`} size="30" placeholder="name@gmail.com" />
+                        <input type="email" name="email" value={emailValue} onChange={handleEmailValue} className={`text-center p-1 ${validateEmail(emailValue) ? "changeGreen" : "changeRed"}`} size="30" placeholder="name@gmail.com" />
                             <span className="input-group-text"><i className="bi bi-envelope"></i></span>
 
                             {validateEmail(emailValue) ? (
-                              <span className="input-group-text bi bi-check-circle-fill"></span>) :
-                                  (<span className="input-group-text bi bi-x-circle-fill"></span>)
+                              <span className="input-group-text bi bi-check-circle-fill fs-6"></span>) :
+                                  (<span className="input-group-text bi bi-x-circle-fill fs-6"></span>)
                                 }
 
                     </div>
@@ -130,14 +166,14 @@ function Signin() {
                   <label className="font-weight-bold"><b>Password</b></label>
 
                     <div className="input-password input-group">
-                        <input type="password" size="30" value={passwordValue} onChange={handlePasswordValue} className={`text-center p-1 ${validatePassword(passwordValue) ? "changeGreen" : "changeRed"}`} placeholder="Must be at least 6 characters..." />
+                        <input type="password" size="30" name="password" value={passwordValue} onChange={handlePasswordValue} className={`text-center p-1 ${validatePassword(passwordValue) ? "changeGreen" : "changeRed"}`} placeholder="Must be at least 6 characters..." />
                             <span className="input-group-text"><i className="bi bi-lock-fill"></i></span>
 
                             {validatePassword(passwordValue) ? (
-                                <span className="input-group-text bi bi-check-circle-fill"></span>) :
-                                    ((<span className="input-group-text bi bi-x-circle-fill"></span>))}
+                                <span className="input-group-text bi bi-check-circle-fill fs-6"></span>) :
+                                    ((<span className="input-group-text bi bi-x-circle-fill fs-6"></span>))}
                     </div>
-                    {passwordError && <div style={{ color: 'red'}}>{passwordError}</div>}
+                    {passwordError && <div style={{ color: 'red' }}>{passwordError}</div>}
               </div>
 
               <div className="checkbox mt-4 mb-4">
@@ -145,7 +181,7 @@ function Signin() {
                   <div className="signin-checkbox-name">Remember me</div>
               </div>
 
-              <button className={`btn btn-success px-4 ${isClicked ? "click-effect" : ""}`} onClick={handleSigninButton} type="submit"><strong>Sign In</strong></button>
+              <button className={`btn btn-success px-4 ${isClicked ? "click-effect" : ""}`} type="submit"><strong>Sign In</strong></button>
           </form>
 
 
@@ -156,9 +192,9 @@ function Signin() {
 
             <div className="end">
                 <div className="or-section mt-3">
-                  <p className="or-line"><hr/></p>
+
                   <p className="or-text">OR</p>
-                  <p className="or-line"><hr/></p>
+
                 </div>
 
             </div>

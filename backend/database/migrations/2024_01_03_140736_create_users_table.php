@@ -13,11 +13,16 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('username');
+            $table->string('phoneNo');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->unsignedBigInteger('department_id')->nullable();
+            $table->unsignedBigInteger('sub_department_id')->nullable();
+            $table->foreign('department_id')->on('departments')->references('id')->onDelete('cascade');
+            $table->foreign('sub_department_id')->on('sub_departments')->references('id')->onDelete('cascade');
             $table->timestamps();
         });
     }
