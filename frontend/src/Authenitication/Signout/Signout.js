@@ -6,7 +6,7 @@ import './Signout.css';
 import login from '../../images/login.avif';
 import google from '../../images/google.png';
 import facebook from '../../images/facebook.webp';
-import SideBar from '../../Layouts/SideBar';
+import SideBar from '../../Layouts/SideBar/SideBar';
 
 
 

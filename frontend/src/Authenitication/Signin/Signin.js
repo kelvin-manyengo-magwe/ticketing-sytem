@@ -7,8 +7,8 @@ import green from '../../images/green.webp';
 import google from '../../images/google.png';
 import facebook from '../../images/facebook.webp';
 import './Signin.css';
-import {  Link } from 'react-router-dom';
-
+import {  Link, useNavigate } from 'react-router-dom';
+import SideBar from '../../Layouts/SideBar/SideBar';
 
 
 function Signin() {
@@ -20,6 +20,10 @@ function Signin() {
 
     const [emailError, setEmailError]= useState(null);
     const [passwordError, setPasswordError] = useState(null);
+
+    const [loading, setLoading] = useState(false);
+
+    const navigate = useNavigate();
 
     /*validation of email*/
     function validateEmail(emailValue) {
@@ -61,12 +65,18 @@ function Signin() {
       }
     }
 
+    const loadEffect = ()=> {
+      setLoading(true);
+        /*setTimeout(()=> setLoading(false), 2000);*/
+    }
+
     const handleCheckboxClick= () => setIsChecked(!isChecked);
 
 
 
       const submitMethod = async (event) => {
         event.preventDefault();
+
 
         /*create the instance of the FormData for the form values*/
         const formData = new FormData(event.target);
@@ -84,7 +94,8 @@ function Signin() {
                   method: 'POST',
                   body: JSON.stringify(jsonData),
                   headers: {
-                    'Content-Type': 'application/json'
+                    accept: 'application/json',
+                    'Content-Type': 'application/json',
                   },
                 });
 
@@ -94,6 +105,8 @@ function Signin() {
 
                 const signinData = await response.json();
                   console.log(signinData);
+
+                  navigate('/sideBar');
 
             } catch(error) {
 
@@ -170,7 +183,7 @@ function Signin() {
                             <span className="input-group-text"><i className="bi bi-lock-fill"></i></span>
 
                             {validatePassword(passwordValue) ? (
-                                <span className="input-group-text bi bi-check-circle-fill fs-6"></span>) :
+                              <span className="input-group-text bi bi-check-circle-fill fs-6"></span>) :
                                     ((<span className="input-group-text bi bi-x-circle-fill fs-6"></span>))}
                     </div>
                     {passwordError && <div style={{ color: 'red' }}>{passwordError}</div>}
@@ -181,7 +194,18 @@ function Signin() {
                   <div className="signin-checkbox-name">Remember me</div>
               </div>
 
-              <button className={`btn btn-success px-4 ${isClicked ? "click-effect" : ""}`} type="submit"><strong>Sign In</strong></button>
+              <button className={`btn btn-success px-4 ${isClicked ? "click-effect" : ""}`}
+                      disabled={loading}
+                      type="submit"
+                      onClick={loadEffect}>
+                    {!loading ? (<strong>Sign In</strong>) :
+                      (
+                        <>
+                        <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        {'\u00a0'}Loading...
+                        </>
+                      )}
+              </button>
           </form>
 
 
