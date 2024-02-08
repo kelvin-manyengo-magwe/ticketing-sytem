@@ -6,3 +6,38 @@
 
     </body>
 </html>
+
+
+<div className="firstViewPage">
+        <div className="sideBarContent">
+
+        <div className="navbar">
+              <button className="navbar-toggler" type="button"
+                      data-toggle="collapse"     aria-controls="navbarNav"
+                      aria-expanded="false"      aria-label="Toggle navigation"
+                      onClick={toggleSidebar}>
+                      <span className="navbar-toggler-icon"></span>
+              </button>
+
+        </div>
+
+        <div className="profile">
+            <span className="bi bi-person"></span>
+            <div>Admin</div>
+        </div>
+
+
+          <nav>
+              <LinkMap />
+          </nav>
+
+        </div>
+        <div className="sideBarBody">
+
+              <div className="container">
+                  <div className="row">
+                      <Outlet />
+                  </div>
+              </div>
+        </div>
+     </div>
