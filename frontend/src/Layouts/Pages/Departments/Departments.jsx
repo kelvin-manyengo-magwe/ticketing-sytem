@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function ManageDepartments() {
+export default function Departments() {
   return (
     <div>
         Manage Departments
