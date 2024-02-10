@@ -145,11 +145,13 @@ function Signin() {
             </svg>
         </div>
 
+        <div className="upper-auth">
+            <p className="lead text-center fs-1" style={{ color: '#ff0000', fontFamily: 'Verdana, sans-serif', textShadow: '2px 2px 4px rgb(0,0,0,0.2)' }}><b>Effortless<br/> Ticket Management</b></p>
 
-          <p className="lead text-center fs-1" style={{ color: '#ff0000', fontFamily: 'Verdana, sans-serif', textShadow: '2px 2px 4px rgb(0,0,0,0.2)' }}><b>Effortless<br/> Ticket Management</b></p>
+            <p><img src={login} /></p>
+            <p className="fs-6 text-center mt-3 container p-3" style={{ color: '#33', fontFamily: 'Arial, serif', fontStyle: 'italic' }}><b>Elevate Your Experience With Our Comprehensive Ticketing System - A Solution Crafted for Effortless Complaint Managment</b></p>
+        </div>
 
-          <img src={login} />
-          <p className="fs-6 text-center mt-3 container p-3" style={{ color: '#33', fontFamily: 'Arial, serif', fontStyle: 'italic' }}><b>Elevate Your Experience With Our Comprehensive Ticketing System - A Solution Crafted for Effortless Complaint Managment</b></p>
     </div>
 
       <div className="container signin-form mt-3 card">

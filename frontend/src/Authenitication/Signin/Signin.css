@@ -190,3 +190,9 @@ body {
   z-index: -1;
   /*background-color: rgb(227, 245, 249);*/  /*the background color for the bottom*/
 }
+.upper-auth {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

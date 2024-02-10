@@ -26,6 +26,7 @@ const RouteLogic = () => {
                   <Route path="departments" element={<Departments />} />
                   <Route path="notifications" element={<Notifications />} />
                   <Route path="tickets" element={<MyTickets />} />
+                  <Route path="users" element={<ManageUsers />} />
                   <Route path="settings" element={<Settings />} />
                   <Route path="reports" element={<Reports />} />
                   <Route path="*" element={<NoPage />} />

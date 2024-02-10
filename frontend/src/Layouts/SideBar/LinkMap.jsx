@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import './SideBar.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+
 
 
 const LinkMap = () => {
@@ -17,13 +18,24 @@ const LinkMap = () => {
         {path: '/logout',  icon: 'bi bi-box-arrow-left',  text: 'Logout'},
     ];
 
+    const [activeLink, setActiveLink] = useState(window.location.pathname);
+
+    useEffect(() => {
+        setActiveLink(window.location.pathname);
+    }, [window.location.pathname])
+
   return (
       <ul className="listContent">
           {menuItems.map( (item, index) => (
               <li key={index}>
-                  <Link to={item.path}>
-                      <i className={item.icon}></i>
+                  <Link to={item.path}
+                   style={{textDecoration: 'none', color: 'white'}}
+                   className={`link-icon ${activeLink == item.path ? `activeLink` : ``}`}
+                   onClick={() => setActiveLink(item.path)}>
+
+                      <i className={item.icon} style={{fontWeight: 'bold'}}></i>
                       <span>{item.text}</span>
+                    
                   </Link>
               </li>
           )
