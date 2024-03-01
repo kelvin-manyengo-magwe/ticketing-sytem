@@ -68,6 +68,7 @@ class AuthController extends Controller
                 'access_token' => $cookie,
                 'token_type' => 'Bearer',
                 'user' => new UserResource($user),
+                'token' => $token,
               ]
             ];
 

@@ -6,24 +6,23 @@ import { useState, useRef } from 'react';
 import helpdesk from '../../images/helpdesk2.png';
 
 
+
 export default function SideBar() {
       const [isCollapsed, setIsCollapsed] = useState(false);
-      
+
 
    return (
      <div className="navigation">
-            <div className="side-bar-container">
+            <div className={`side-bar-container ${isCollapsed ? 'navigation-in' : 'navigation-out'}`}>
                 <div className="side-bar-upper">
                     <div className="side-bar-heading">
                         <div className="side-bar-brand">
-                            <img src={helpdesk} width="55px" height="55px"/>
+                            <img src={helpdesk} />
                             <h4>Ticketing System</h4>
                         </div>
 
-                        <button type="button"
-                                className={`nav-button ${isCollapsed ? `collapse` : ''}`}
-                                onMouseEnter={()=> setIsCollapsed(true)}
-                                onMouseLeave={()=> setIsCollapsed(false)}>
+                        <button type="button" className="nav-button"
+                                onClick={() => setIsCollapsed(!isCollapsed)}>
                               <span></span>
                               <span></span>
                               <span></span>
@@ -31,7 +30,7 @@ export default function SideBar() {
                     </div>
                 </div>
                 <nav className="side-bar-links">
-                    <LinkMap />
+                    <LinkMap collapsed={isCollapsed} />
                 </nav>
             </div>
             <div className="content-container">

@@ -3,7 +3,7 @@ import { Link, Outlet, useNavigate } from 'react-router-dom';
 import './SideBar.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-
+import LogoutLogic from '../../Authenitication/Logout/LogoutLogic.jsx';
 
 
 const LinkMap = () => {
@@ -22,20 +22,20 @@ const LinkMap = () => {
 
     useEffect(() => {
         setActiveLink(window.location.pathname);
-    }, [window.location.pathname])
+    }, [window.location.pathname]);
 
   return (
       <ul className="listContent">
           {menuItems.map( (item, index) => (
               <li key={index}>
-                  <Link to={item.path}
+                  <Link to={item.path == '/logout' ? LogoutLogic : item.path}
                    style={{textDecoration: 'none', color: 'white'}}
-                   className={`link-icon ${activeLink == item.path ? `activeLink` : ``}`}
+                   className={`link-icon ${activeLink == item.path ? `activeLink` : ``} ${item.path == '/logout' ? 'logout-link' : ''}`}
                    onClick={() => setActiveLink(item.path)}>
 
                       <i className={item.icon} style={{fontWeight: 'bold'}}></i>
                       <span>{item.text}</span>
-                    
+
                   </Link>
               </li>
           )
