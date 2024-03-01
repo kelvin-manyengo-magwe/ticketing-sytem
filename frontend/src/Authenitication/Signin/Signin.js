@@ -15,7 +15,7 @@ function Signin() {
     const [isChecked, setIsChecked] = useState(false);
     const [isClicked, setIsClicked] = useState(false);
 
-    const [emailValue, setEmailValue]= useState("");
+    const [emailValue, setEmailValue]= useState(null);
     const [passwordValue, setPasswordValue]=  useState("");
 
     const [emailError, setEmailError]= useState(null);

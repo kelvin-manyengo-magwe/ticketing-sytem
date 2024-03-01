@@ -3,6 +3,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
+use App\Http\Controllers\GoogleAuthController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -37,7 +39,12 @@ Route::post('/register', [AuthController::class, 'register'])->name('register');
   Route::middleware('auth:sanctum')->group(function() {
     /*the auth:sanctum will check if the request contain the valid API token then the route can be accessed
       if the route does not contain the valid API tokens then the route can not be accessed  */
-      Route::post('/logout', [AuthController::class, 'logout']);
+      Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
       Route::get('/user', [AuthController::class, 'getUser']);
   });
+
+
+Route::get('auth/google', [GoogleAuthController::class, 'redirect'])->name('google-auth');
+
+Route::get('auth/google/call-back', [GoogleAuthController::class, 'googleCallback'])->name('googleCallback');

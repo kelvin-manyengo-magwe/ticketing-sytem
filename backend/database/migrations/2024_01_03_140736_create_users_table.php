@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('phoneNo');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
+            $table->string('google_id')->nullable();
             $table->rememberToken();
             $table->unsignedBigInteger('department_id')->nullable();
             $table->unsignedBigInteger('sub_department_id')->nullable();
