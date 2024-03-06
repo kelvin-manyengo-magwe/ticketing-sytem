@@ -7,6 +7,7 @@ import login from '../../images/login.avif';
 import google from '../../images/google.png';
 import facebook from '../../images/facebook.webp';
 import SideBar from '../../Layouts/SideBar/SideBar';
+import FacebookAuth from '../FacebookAuth/FacebookAuth';
 
 
 
@@ -21,6 +22,8 @@ function Signout() {
   const [passwordValue, setPasswordValue] = useState("");
   const [emailError, setEmailError] = useState(null);
   const [passwordError, setPasswordError] = useState(null);
+
+  const [loading, setLoading] = useState(false);
 
   function validateEmail(emailValue) {
     return /\S+@\S+\.\S+/.test(emailValue);
@@ -67,38 +70,43 @@ function Signout() {
         formValue.forEach((value, key) => {
             jsonData[key] = value;
         });
+            setLoading(true);
 
-        try {
-            const response= await fetch(`http://127.0.0.1:8000/api/register`, {
+            const response= await fetch(`http://localhost:8000/api/register`, {
                 method: 'POST',
                 body: JSON.stringify(jsonData),
                 headers: {
                   accept: 'application/json',
                   'Content-Type': 'application/json'
                 },
+            }).then((response) => {
+              if(!response.ok) {
+                throw Error(`Error: ${response.status} - ${response.statusText}`);
+              }
+              const signOutData= response.json();
+                console.log(signOutData);
+
+                navigate('/sidebar');
+            }).then((data) => {
+                setLoading(false);
+            }).catch((error) => {
+                  if(error.response) {
+                      setLoading(false);
+                      console.log(`Error from the server:
+                          Data: ${JSON.stringify(error.response.data)},
+                          Status: ${error.response.status},
+                          Headers: ${JSON.stringify(error.response.headers)}`)
+                  } else if(error.request) {
+                    setLoading(false);
+                      console.log(`Error request made but not received ${error.request}`);
+                  } else {
+                      setLoading(false);
+                      console.log(`Error made due setting up request ${error.message}`);
+                  }
             });
 
 
-            if(!response.ok) {
-              throw Error(`Error: ${response.status} - ${response.statusText}`);
-            }
-            const signOutData= await response.json();
-              console.log(signOutData);
 
-              navigate('/sidebar');
-
-        } catch(error) {
-              if(error.response) {
-                  console.log(`Error from the server:
-                      Data: ${JSON.stringify(error.response.data)},
-                      Status: ${error.response.status},
-                      Headers: ${JSON.stringify(error.response.headers)}`)
-              } else if(error.request) {
-                  console.log(`Error request made but not received ${error.request}`);
-              } else {
-                  console.log(`Error made due setting up request ${error.message}`);
-              }
-        }
   }
 
 
@@ -182,7 +190,15 @@ function Signout() {
             <div className="signin-checkbox-name">Remember me</div>
           </div>
 
-          <button className={`btn btn-success px-4 ${isClicked ? "click-effect" : ""}`} type="submit"><strong>Sign Out</strong></button>
+          <button className={`btn btn-success px-4 ${isClicked ? "click-effect" : ""}`} disabled={loading}>
+
+              {loading ? 
+                (<>Loading</>)
+                    :
+                (<strong>Signout</strong>)
+              }
+          </button>
+
         </form>
 
         <p className="mt-3"> Already have an account ?

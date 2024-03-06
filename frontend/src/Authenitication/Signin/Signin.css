@@ -21,7 +21,9 @@
     justify-content: center;
     align-items: center;
   }
-
+  .google-login {
+    transform: translateY(10%);
+  }
 
 }
 
@@ -57,7 +59,7 @@
   font-weight: bold;
   font-size: 17px;
 }
-.click-effect {
+/*.click-effect {
   animation-name: button-click;
   animation-duration: 0.3s;
   transition: transform 0.3s ease-in-out;
@@ -70,7 +72,7 @@
   to {
     transform: scale(1);
   }
-}
+}*/
 .input-group input {
   height: 38px;
   /*border: 1px solid #ced4da;*/

@@ -44,7 +44,7 @@ Route::post('/register', [AuthController::class, 'register'])->name('register');
       Route::get('/user', [AuthController::class, 'getUser']);
   });
 
-
+//url for the google
 Route::get('auth/google', [GoogleAuthController::class, 'redirect'])->name('google-auth');
-
+//the callback url
 Route::get('auth/google/call-back', [GoogleAuthController::class, 'googleCallback'])->name('googleCallback');

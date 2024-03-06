@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Laravel\Sanctum\Http\EnsureFrontendRequestsAreStateful;
 
 class Kernel extends HttpKernel
 {
@@ -14,14 +15,15 @@ class Kernel extends HttpKernel
      * @var array<int, class-string|string>
      */
     protected $middleware = [
-        // \App\Http\Middleware\TrustHosts::class,
-      //  \Fruitcake\Cors\HandleCors::class,
-        \App\Http\Middleware\TrustProxies::class,
+
+      //  \App\Http\Middleware\Cors::class,
         \Illuminate\Http\Middleware\HandleCors::class,
+        \App\Http\Middleware\TrustProxies::class,
         \App\Http\Middleware\PreventRequestsDuringMaintenance::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+        //\Fruitcake\Cors\HandleCors::class,
     ];
 
     /**
@@ -31,17 +33,21 @@ class Kernel extends HttpKernel
      */
     protected $middlewareGroups = [
         'web' => [
+
             \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
-            \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+          \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             \Illuminate\Session\Middleware\StartSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-            \App\Http\Middleware\VerifyCsrfToken::class, //enable line is permitted
+            \App\Http\Middleware\VerifyCsrfToken::class, //enable line is permitted for the token
+            //to check if below line is added for the token
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
 
         ],
 
         'api' => [
+
+          //  \EnsureFrontendRequestAreStateful::class,
             \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
