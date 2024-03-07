@@ -121,8 +121,8 @@ h4 {
   align-items: center;
 }
 .side-bar-brand img {
-  width: 55px;
-  height: 55px;
+  width: 45px;
+  height: 45px;
 }
 
 .nav-button {
@@ -155,7 +155,7 @@ button span {
 }
 
 img {
-  border-radius: 20px;
+  border-radius: 100px 100px 50px 50px;
 }
 Link.active {
   font-weight: bold;

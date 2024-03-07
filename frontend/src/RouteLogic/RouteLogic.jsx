@@ -11,6 +11,7 @@ import ManageUsers from '../Layouts/Pages/Users/ManageUsers';
 import NoPage from '../Layouts/Pages/NoPage/NoPage';
 import Settings from '../Layouts/Pages/Settings/Settings';
 import Reports from '../Layouts/Pages/Reports/Reports';
+import Congratulations from '../Authenitication/Signout/Congratulations/Congratulations';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
@@ -34,6 +35,7 @@ const RouteLogic = () => {
 
                   <Route path="/signin" element={<Signin />} />
                   <Route path="/signout" element={<Signout />} />
+                  <Route path="/congratulations" element={<Congratulations />} />
         </Routes>
     </BrowserRouter>
   )

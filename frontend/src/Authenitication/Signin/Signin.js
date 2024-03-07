@@ -11,6 +11,7 @@ import {  Link, useNavigate } from 'react-router-dom';
 import SideBar from '../../Layouts/SideBar/SideBar';
 import GoogleAuth from '../GoogleAuth/GoogleAuth';
 import FacebookAuth from '../FacebookAuth/FacebookAuth';
+import swal from 'sweetalert';
 
 
 const LoadingContext= createContext();
@@ -109,8 +110,8 @@ function Signin() {
 
                         const signinData = response.json();
                           console.log(signinData);
-
-                          navigate('/sideBar');
+                            swal("Success", "Your form submited successfully.", "success");
+                          navigate('/sidebar');
                       }).then((data) => {
                           setLoading(false);
                       }).
