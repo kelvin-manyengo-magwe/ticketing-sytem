@@ -14,6 +14,7 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+  transform: translateY(-60px);
 }
 .congratulation-title {
     font-size: 3.2em;
@@ -34,38 +35,67 @@
     padding-bottom: 30px;
 }
 .congratulations-message {
-
+  font-size: 1.2em;
   background: #e6e6e6;
   opacity: 10;
   border-radius: 15px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   padding: 50px 20px 50px 20px;
 
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .message-container {
   display: flex;
   flex-direction: column;
   align-items: baseline;
+  margin-top: 40px;
+}
+.button {
+  background: #0066cc;
+  margin: 30px 0px 0px 0px;
+  padding: 11px;
+  border-radius: 15px;
+}
+.arrow-animation  {
+  animation: arrow-animation 1s ease-in-out infinite alternate;
 }
 
-/*button i  {
-  transform: scale(2,2);
-
-  animation: start-animation 1s ease-in-out infinite alternate;
-}
-
-@keyframes start-animation {
+@keyframes arrow-animation {
   0% {
     transform: translateX(-20%);
   }
+  50% {
+    transform: translateX(20%);
+  }
   100% {
-    transform: translateY(30%);
+    transform: translateX(0);
   }
 }
-@media only screen and (min-width: 1037px) {
+/*@media only screen and (min-width: 1037px) {
   .congratulations-message {
       min-width: 700px;
   }
 }*/
+
+@media (min-width: 500px) and (max-width: 581px) {
+  .congratulation-title {
+    font-size: em;
+  }
+  .congratulation-title2 {
+    font-size: 2.7em;
+  }
+
+}
+
+@media only screen and (max-width: 500px) {
+  .congatulation-title {
+    font-size: 2.5em;
+  }
+  .congratulation-title2 {
+    font-size: 2.3em;
+  }
+  .congratulation-container {
+    padding: 10px;
+  }
+}

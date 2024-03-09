@@ -220,7 +220,7 @@ function Signin() {
 
 
                 <p className="mt-3">Don't have an account ?
-                  <Link className="signin-register" to="signout"> Register here</Link>
+                  <Link className="signin-register" to="/signout"> Register here</Link>
                 </p>
 
 

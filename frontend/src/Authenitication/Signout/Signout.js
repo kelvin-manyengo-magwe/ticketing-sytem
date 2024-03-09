@@ -209,7 +209,7 @@ function Signout() {
         </form>
 
         <p className="mt-3"> Already have an account ?
-          <Link className="signin-register" to="signin">Login here</Link>
+          <Link className="signin-register" to="/signin">Login here</Link>
         </p>
 
         <div className="end">

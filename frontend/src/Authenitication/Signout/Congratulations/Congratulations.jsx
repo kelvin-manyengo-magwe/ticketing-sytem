@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useRef, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { Link, useNavigate } from 'react-router-dom';
@@ -12,7 +12,13 @@ import swal from 'sweetalert';
 
 function Congratulations() {
     const {width, height} = useWindowSize();
+    const arrowIcon= useRef(null);
 
+      useEffect(() => {
+          if(arrowIcon.current) {
+              arrowIcon.current.classList.add('arrow-animation');
+          }
+      }, []);
 
   return (
 
@@ -20,7 +26,6 @@ function Congratulations() {
 
         <Confetti width={width} height={height} numberOfPieces={200} gravity={0.03} />
         <Confetti width={width} height={height} numberOfPieces={200} gravity={0.09} style={{ left: 0}} />
-
 
             <div className="congratulation-content">
             <div className="side-bar-brand">
@@ -36,17 +41,17 @@ function Congratulations() {
                           <br/>You are now successfully registered and<br/>
                           ready to experience a seamless ticketing platform.
                       </p>
-                    <div className="button">
-                        <button className="start btn btn-primary">
-                            <Link to="/sidebar">Start Seamless Ticketing
-                              <i className="bi bi-arrow-right px-2" style={{fontSize: '1.2em'}}></i>
 
+                    <div className="button">
+                            <Link to="/sidebar" style={{color: 'white', textDecoration: 'none'}}>Start Seamless Ticketing
+                              <i className="bi bi-arrow-right px-2" ref={arrowIcon} style={{fontSize: '1.2em'}}></i>
                             </Link>
-                        </button>
                     </div>
+
                 </div>
 
             </div>
+
         </div>
 
   )
