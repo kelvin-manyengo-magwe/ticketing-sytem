@@ -16,6 +16,28 @@ export default function SideBar() {
             <div className={`side-bar-container ${isCollapsed ? 'navigation-in' : 'navigation-out'}`}>
                 <div className="side-bar-upper">
                     <div className="side-bar-heading">
+
+                      <div className="bar">
+                          <div className="bar-content-left">
+                              <div className="email-icon">
+                                  <i className="bi bi-envelope-fill"></i>
+                              </div>
+                              <div className="arrow-icon">
+                                  <i className="bi bi-arrow-repeat"></i>
+                              </div>
+
+                          </div>
+                          <div className="bar-content-right">
+                              <div className="search-icon">
+                                    <i class="bi bi-search"></i>
+                              </div>
+                              <div className="message-icon">
+                                    <i class="bi bi-chat-fill"></i>
+                              </div>
+                        </div>  
+
+                      </div>
+
                         <div className="side-bar-brand">
                             <img src={helpdesk} />
                             <h4>Ticketing System</h4>

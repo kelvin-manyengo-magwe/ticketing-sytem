@@ -8,6 +8,7 @@ import google from '../../images/google.png';
 import facebook from '../../images/facebook.webp';
 import SideBar from '../../Layouts/SideBar/SideBar';
 import FacebookAuth from '../FacebookAuth/FacebookAuth';
+import swal from 'sweetalert';
 
 
 
@@ -86,9 +87,11 @@ function Signout() {
               const signOutData= response.json();
                 console.log(signOutData);
 
-                navigate('/sidebar');
+                  swal("Success", "Your Credentials have been submitted successfully.","success");
+                navigate('/congratulations');
             }).then((data) => {
                 setLoading(false);
+
             }).catch((error) => {
                   if(error.response) {
                       setLoading(false);
@@ -174,7 +177,11 @@ function Signout() {
       <div className="form-group mb-4">
         <label className="font-weight-bold"><b>Verify Password</b></label>
             <div className="input-email input-group">
-              <input type="password" value={passwordValue} onChange={handlePasswordValue} className={`text-center p-1 ${validatePassword(passwordValue) ? "changeGreen" : "changeRed"}`} size="27" name="verifyPassword" id="verifyPassword" placeholder="Re-enter Password" />
+
+              <input type="password" value={passwordValue} onChange={handlePasswordValue}
+                    className={`text-center p-1 ${validatePassword(passwordValue) ?
+                          "changeGreen" :
+                              "changeRed"}`} size="27" name="verifyPassword" id="verifyPassword" placeholder="Re-enter Password" />
                     <span className="input-group-text"><i className="bi bi-lock-fill"></i></span>
                     {validatePassword(passwordValue) ? (
                       <span className="input-group-text bi bi-check-circle-fill fs-6"></span>) :
@@ -192,7 +199,7 @@ function Signout() {
 
           <button className={`btn btn-success px-4 ${isClicked ? "click-effect" : ""}`} disabled={loading}>
 
-              {loading ? 
+              {loading ?
                 (<>Loading</>)
                     :
                 (<strong>Signout</strong>)
@@ -202,7 +209,7 @@ function Signout() {
         </form>
 
         <p className="mt-3"> Already have an account ?
-          <Link className="signin-register" to="signin">Login here</Link>
+          <Link className="signin-register" to="/signin">Login here</Link>
         </p>
 
         <div className="end">
